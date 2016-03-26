@@ -7,5 +7,13 @@
   
   (:gen-class))
 
+(defonce pictures (atom[]))
+(defonce server (atom nil))
+
+(add-watch messages :save-to-disk
+  (fn [_ _ _ _]
+    (spit "pictures.edn" (pr-str @pictures))))
+
+
 (defn -main []
-  (println "Hello, World!"))
+  (println "Hello, world!"))
